@@ -9,7 +9,7 @@ export default function AboutPage() {
         title="Engineer, researcher, and systems-minded learner."
         description="I am building a career around AI systems, applied models, and intellectually rigorous engineering work."
       />
-      <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
         <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-6 text-base leading-8 text-[var(--muted)]">
             <p>

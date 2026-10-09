@@ -18,7 +18,7 @@ export default function ContactPage() {
         title="Let’s talk about AI, research, and real systems."
         description="For internships, collaborative projects, research conversations, and engineering discussions, I am always open to connecting."
       />
-      <main className="mx-auto w-full max-w-5xl px-6 py-16 md:px-8">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-5xl px-6 py-16 md:px-8">
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {contacts.map((contact) => (
             <a

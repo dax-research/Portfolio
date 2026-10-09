@@ -9,7 +9,7 @@ export default function ResearchPage() {
         title="Exploring the research layer behind modern AI systems."
         description="My research interests sit at the intersection of language models, retrieval, evaluation, and practical systems design."
       />
-      <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
         <SectionHeading
           eyebrow="Focus areas"
           title="Current lines of investigation."

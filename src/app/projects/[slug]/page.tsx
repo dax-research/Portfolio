@@ -47,7 +47,7 @@ async function ProjectDetails({
         title={project.title}
         description={project.description}
       />
-      <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
         <section
           aria-label={`${project.title} workflow`}
           className="mb-12 border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 md:p-8"

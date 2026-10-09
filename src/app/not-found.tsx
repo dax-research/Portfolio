@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 text-center">
+    <main id="main-content" tabIndex={-1} className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center px-6 text-center">
       <p className="mono text-[11px] uppercase tracking-[0.18em] text-[var(--muted)]">404</p>
       <h1 className="mt-5 text-4xl font-medium tracking-[-0.08em] text-[var(--ink)] md:text-6xl">
         This page is not available.

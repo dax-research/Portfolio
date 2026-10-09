@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { MobileNavigation } from "@/components/mobile-navigation";
 
 export function SiteHeader() {
   const navItems = [
@@ -11,8 +12,8 @@ export function SiteHeader() {
   ];
 
   return (
-    <header className="mx-auto w-full max-w-6xl px-6 pt-6 md:px-8">
-      <div className="flex items-center justify-between gap-4 border-b border-[var(--line)] pb-4">
+    <header className="relative mx-auto w-full max-w-6xl px-6 pt-6 md:px-8">
+      <div className="flex items-center justify-between gap-3 border-b border-[var(--line)] pb-4">
         <Link href="/" className="text-sm font-medium tracking-[0.18em] text-[var(--ink)] uppercase">
           Dax Patel
         </Link>
@@ -28,13 +29,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <nav aria-label="Quick navigation" className="flex items-center gap-2 md:hidden">
-            {navItems.slice(0, 3).map((item) => (
-              <Link key={item.href} href={item.href} className="text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <MobileNavigation />
           <Link
             href="/contact"
             className="inline-flex items-center border border-[var(--ink)] px-3 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]"
@@ -81,7 +76,7 @@ export function PageIntro({
   description: string;
 }) {
   return (
-    <section className="border-b border-[var(--line)] py-16 md:py-20">
+    <section className="page-enter border-b border-[var(--line)] py-16 md:py-20">
       <div className="mx-auto max-w-6xl px-6 md:px-8">
         <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
           {eyebrow}
@@ -147,7 +142,7 @@ export function ProjectCard({
   return (
     <Link
       href={href}
-      className="group relative block border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--ink)] hover:bg-white/60"
+      className="project-card group relative block border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--ink)] hover:bg-white/60"
     >
       <div className="mb-6 flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
@@ -215,6 +210,9 @@ export function SiteFooter() {
 export function PageFrame({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <SiteHeader />
       {children}
       <SiteFooter />

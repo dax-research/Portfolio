@@ -9,7 +9,7 @@ export default function ProjectsPage() {
         title="Selected systems, experiments, and applied AI work."
         description="A curated portfolio of current projects focused on data quality, research tooling, and applied machine learning systems."
       />
-      <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <SectionHeading
             eyebrow="Portfolio"

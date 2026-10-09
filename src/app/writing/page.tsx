@@ -9,7 +9,7 @@ export default function WritingPage() {
         title="Notes, ideas, and technical commentary."
         description="Public writing focused on AI systems, ML fundamentals, and the practical role of data in model performance."
       />
-      <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
         <SectionHeading
           eyebrow="Published work"
           title="Selected articles from my Medium writing."

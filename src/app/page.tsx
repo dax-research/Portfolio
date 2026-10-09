@@ -17,8 +17,8 @@ import {
 export default function Home() {
   return (
     <PageFrame>
-      <main className="mx-auto w-full max-w-6xl px-6 pb-20 md:px-8">
-        <section className="grid gap-10 border-b border-[var(--line)] py-16 md:grid-cols-[1.35fr_0.65fr] md:items-end md:py-20">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 pb-20 md:px-8">
+        <section className="hero-enter grid gap-10 border-b border-[var(--line)] py-16 md:grid-cols-[1.35fr_0.65fr] md:items-end md:py-20">
           <div>
             <p className="mono mb-5 text-[11px] uppercase tracking-[0.2em] text-[var(--muted)]">
               AI/ML engineer · researcher · systems builder
@@ -58,7 +58,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="editorial-grid border border-[var(--line)] bg-[rgba(255,255,255,0.3)] p-6">
+          <div className="hero-panel editorial-grid border border-[var(--line)] bg-[rgba(255,255,255,0.3)] p-6">
             <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Now</p>
             <p className="mt-4 text-2xl font-medium tracking-[-0.05em] text-[var(--ink)]">
               Building intelligent systems around data, retrieval, and research workflows.
