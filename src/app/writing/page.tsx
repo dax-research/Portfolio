@@ -1,10 +1,12 @@
 import { ArticleCard, PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
 import { writingArticles } from "@/data/portfolio";
+import { RouteTransition } from "@/components/route-transition";
 
 export default function WritingPage() {
   return (
     <PageFrame>
-      <PageIntro
+      <RouteTransition routeKey="writing">
+        <PageIntro
         eyebrow="Writing"
         title="Notes, ideas, and technical commentary."
         description="Public writing focused on AI systems, ML fundamentals, and the practical role of data in model performance."
@@ -19,7 +21,8 @@ export default function WritingPage() {
             <ArticleCard key={article.title} article={article} />
           ))}
         </div>
-      </main>
+        </main>
+      </RouteTransition>
     </PageFrame>
   );
 }

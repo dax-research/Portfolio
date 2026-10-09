@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageFrame, PageIntro } from "@/components/site-shell";
 import { profileLinks } from "@/data/portfolio";
+import { RouteTransition } from "@/components/route-transition";
 
 export default function ContactPage() {
   const contacts = [
@@ -13,7 +14,8 @@ export default function ContactPage() {
 
   return (
     <PageFrame>
-      <PageIntro
+      <RouteTransition routeKey="contact">
+        <PageIntro
         eyebrow="Contact"
         title="Let’s talk about AI, research, and real systems."
         description="For internships, collaborative projects, research conversations, and engineering discussions, I am always open to connecting."
@@ -26,7 +28,7 @@ export default function ContactPage() {
               href={contact.href}
               target={contact.href.startsWith("http") ? "_blank" : undefined}
               rel={contact.href.startsWith("http") ? "noreferrer" : undefined}
-              className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 transition-colors hover:border-[var(--ink)]"
+              className="contact-card scroll-reveal border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6"
             >
               <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">{contact.label}</p>
               <p className="mt-4 text-lg text-[var(--ink)]">{contact.value}</p>
@@ -48,7 +50,8 @@ export default function ContactPage() {
             </a>
           </div>
         </div>
-      </main>
+        </main>
+      </RouteTransition>
     </PageFrame>
   );
 }

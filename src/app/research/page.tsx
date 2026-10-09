@@ -1,10 +1,12 @@
 import { PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
 import { researchInterests } from "@/data/portfolio";
+import { RouteTransition } from "@/components/route-transition";
 
 export default function ResearchPage() {
   return (
     <PageFrame>
-      <PageIntro
+      <RouteTransition routeKey="research">
+        <PageIntro
         eyebrow="Research"
         title="Exploring the research layer behind modern AI systems."
         description="My research interests sit at the intersection of language models, retrieval, evaluation, and practical systems design."
@@ -17,14 +19,14 @@ export default function ResearchPage() {
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {researchInterests.map((interest) => (
-            <div key={interest} className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
+            <div key={interest} className="scroll-reveal border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
               <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Area</p>
               <p className="mt-3 text-xl leading-8 text-[var(--ink)]">{interest}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 border-t border-[var(--line)] pt-12">
+        <div className="scroll-reveal mt-16 border-t border-[var(--line)] pt-12">
           <SectionHeading
             eyebrow="Research posture"
             title="Systematic, hands-on, and evidence-driven."
@@ -38,7 +40,8 @@ export default function ResearchPage() {
             </p>
           </div>
         </div>
-      </main>
+        </main>
+      </RouteTransition>
     </PageFrame>
   );
 }
