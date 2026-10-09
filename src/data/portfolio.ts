@@ -9,6 +9,7 @@ export type Project = {
   demo?: string;
   tech: string[];
   highlights: string[];
+  workflow: { label: string; detail: string }[];
   overview: string;
   problem: string;
   motivation: string;
@@ -109,6 +110,12 @@ export const featuredProjects: Project[] = [
       "Health scoring and remediation recommendations",
       "JSON, Markdown, and HTML export",
     ],
+    workflow: [
+      { label: "Dataset", detail: "Pass a pandas DataFrame for inspection." },
+      { label: "Health checks", detail: "Evaluate common data-quality issues." },
+      { label: "Report", detail: "Review findings, score, and recommendations." },
+      { label: "Export", detail: "Save the report as JSON, Markdown, or HTML." },
+    ],
     overview:
       "MLCheck is built around the idea that many model failures are visible earlier in the dataset than in the final training loop. The library gives practitioners a fast assessment of the most common data-health problems before a model is trained.",
     problem:
@@ -154,6 +161,12 @@ export const featuredProjects: Project[] = [
       "RAG foundation for project research workflows",
       "Research assistant architecture for future iterations",
     ],
+    workflow: [
+      { label: "Research papers", detail: "Provide source documents as PDFs." },
+      { label: "Extract & chunk", detail: "Prepare text segments for retrieval." },
+      { label: "Embed", detail: "Generate vector representations of text." },
+      { label: "Retrieve", detail: "Use the pipeline as a foundation for RAG." },
+    ],
     overview:
       "ResearchOS explores a research workflow in which documents are processed, indexed, and searched semantically before being synthesized into insights. The project is designed around the practical needs of literature review and research discovery rather than only model demos.",
     problem:
@@ -198,6 +211,12 @@ export const featuredProjects: Project[] = [
       "Ensemble model using Random Forest + XGBoost + Meta Logistic Regression",
       "OTP challenge flow for medium-risk transactions",
       "Analyst dashboards and role-based investigation workflows",
+    ],
+    workflow: [
+      { label: "Transaction", detail: "Submit a payment for evaluation." },
+      { label: "Risk assessment", detail: "Combine rule signals and ML scoring." },
+      { label: "Decision", detail: "Allow, challenge, or deny based on risk." },
+      { label: "Review", detail: "Route suspicious activity to analyst workflows." },
     ],
     overview:
       "Argus is a real, layered fraud-detection project that combines transaction monitoring, compliance logic, explainable ML, and a dashboard-oriented investigation workflow. It is designed around risk management for financial transactions rather than only classification experiments.",

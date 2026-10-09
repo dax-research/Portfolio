@@ -43,8 +43,8 @@ export default function ContactPage() {
             <Link href="/projects" className="inline-flex items-center border border-[var(--ink)] px-5 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]">
               View work
             </Link>
-            <a href={profileLinks.resume} className="inline-flex items-center border border-[var(--line)] px-5 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]">
-              Resume
+            <a href={profileLinks.resume} download className="inline-flex items-center border border-[var(--line)] px-5 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--ink)] transition-colors hover:bg-[var(--ink)] hover:text-[var(--paper)]">
+              Download résumé
             </a>
           </div>
         </div>

@@ -34,6 +34,13 @@ export default function Home() {
               <LinkButton href={profileLinks.email} secondary>
                 Contact
               </LinkButton>
+              <a
+                href={profileLinks.resume}
+                download
+                className="inline-flex items-center justify-center border border-[var(--line)] px-5 py-3 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--ink)] transition-colors hover:border-[var(--ink)]"
+              >
+                Download résumé
+              </a>
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
               <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
@@ -66,6 +73,24 @@ export default function Home() {
                 <span className="text-[var(--ink)]">AI/ML · NLP · RAG</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section
+          aria-label="Education and experience"
+          className="grid gap-5 border-b border-[var(--line)] py-6 text-sm sm:grid-cols-3 sm:gap-8"
+        >
+          <div>
+            <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Education</p>
+            <p className="mt-2 text-[var(--ink)]">Computer Engineering · Dharmsinh Desai University</p>
+          </div>
+          <div>
+            <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Academic record</p>
+            <p className="mt-2 text-[var(--ink)]">CPI 9.16</p>
+          </div>
+          <div>
+            <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Community</p>
+            <p className="mt-2 text-[var(--ink)]">AI/ML Team · Google Developers Groups, DDU</p>
           </div>
         </section>
 

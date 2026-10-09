@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { PageFrame, PageIntro } from "@/components/site-shell";
 import { allProjects } from "@/data/portfolio";
 
@@ -7,7 +8,27 @@ export function generateStaticParams() {
   return allProjects.map((project) => ({ slug: project.slug }));
 }
 
-export default async function ProjectDetailPage({
+export default function ProjectDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  return (
+    <PageFrame>
+      <Suspense
+        fallback={
+          <div className="mx-auto min-h-80 max-w-6xl px-6 py-16 text-sm text-[var(--muted)] md:px-8" aria-busy="true">
+            Loading project…
+          </div>
+        }
+      >
+        <ProjectDetails params={params} />
+      </Suspense>
+    </PageFrame>
+  );
+}
+
+async function ProjectDetails({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -20,13 +41,54 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <PageFrame>
+    <>
       <PageIntro
         eyebrow={project.category}
         title={project.title}
         description={project.description}
       />
       <main className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
+        <section
+          aria-label={`${project.title} workflow`}
+          className="mb-12 border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 md:p-8"
+        >
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">
+                System workflow
+              </p>
+              <h2 className="mt-2 text-2xl font-medium tracking-[-0.05em] text-[var(--ink)] md:text-3xl">
+                From input to useful output.
+              </h2>
+            </div>
+            <p className="mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
+              Project overview
+            </p>
+          </div>
+          <ol className="grid gap-3 md:grid-cols-4">
+            {project.workflow.map((step, index) => (
+              <li
+                key={step.label}
+                className="relative min-h-36 border border-[var(--line)] bg-[var(--paper)] p-4"
+              >
+                <p className="mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
+                  Step {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-3 text-lg font-medium tracking-[-0.03em] text-[var(--ink)]">
+                  {step.label}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{step.detail}</p>
+                {index < project.workflow.length - 1 ? (
+                  <span className="absolute -right-2 top-1/2 z-10 hidden h-4 w-4 -translate-y-1/2 rotate-45 border-r border-t border-[var(--line)] bg-[var(--paper)] md:block" aria-hidden="true" />
+                ) : null}
+              </li>
+            ))}
+          </ol>
+          <p className="mt-4 text-xs leading-5 text-[var(--muted)]">
+            Conceptual flow based on the project&apos;s documented implementation; not a benchmark or deployment claim.
+          </p>
+        </section>
+
         <div className="mb-10 flex flex-wrap gap-3">
           <a
             href={project.repo}
@@ -153,6 +215,6 @@ export default async function ProjectDetailPage({
           </div>
         </div>
       </main>
-    </PageFrame>
+    </>
   );
 }

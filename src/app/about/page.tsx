@@ -27,7 +27,10 @@ export default function AboutPage() {
             <p className="mono mb-5 text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Background</p>
             <div className="space-y-5">
               {experience.map((item) => (
-                <div key={item.period} className="border-t border-[var(--line)] pt-4 first:border-t-0 first:pt-0">
+                <div
+                  key={`${item.period}-${item.role}-${item.organization}`}
+                  className="border-t border-[var(--line)] pt-4 first:border-t-0 first:pt-0"
+                >
                   <p className="mono text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">{item.period}</p>
                   <h3 className="mt-2 text-xl font-medium tracking-[-0.04em] text-[var(--ink)]">{item.role}</h3>
                   <p className="mt-1 text-sm text-[var(--muted)]">{item.organization}</p>
