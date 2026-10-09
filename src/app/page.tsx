@@ -35,6 +35,20 @@ export default function Home() {
                 Contact
               </LinkButton>
             </div>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
+                <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Focus</p>
+                <p className="mt-3 text-base text-[var(--ink)]">Data quality</p>
+              </div>
+              <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
+                <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Systems</p>
+                <p className="mt-3 text-base text-[var(--ink)]">RAG & search</p>
+              </div>
+              <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
+                <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Applied</p>
+                <p className="mt-3 text-base text-[var(--ink)]">Fraud analytics</p>
+              </div>
+            </div>
           </div>
 
           <div className="editorial-grid border border-[var(--line)] bg-[rgba(255,255,255,0.3)] p-6">
@@ -62,7 +76,7 @@ export default function Home() {
             description="Three works define the portfolio focus: dataset quality tooling, research assistance, and applied fraud detection."
           />
           <div className="space-y-5">
-            {featuredProjects.map((project) => (
+            {featuredProjects.map((project, index) => (
               <ProjectCard
                 key={project.slug}
                 title={project.title}
@@ -71,6 +85,7 @@ export default function Home() {
                 shortDescription={project.shortDescription}
                 tech={project.tech}
                 href={`/projects/${project.slug}`}
+                index={index + 1}
               />
             ))}
           </div>

@@ -21,7 +21,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="space-y-5">
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard
               key={project.slug}
               title={project.title}
@@ -30,6 +30,7 @@ export default function ProjectsPage() {
               shortDescription={project.shortDescription}
               tech={project.tech}
               href={`/projects/${project.slug}`}
+              index={index + 1}
             />
           ))}
         </div>

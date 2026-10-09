@@ -134,6 +134,7 @@ export function ProjectCard({
   shortDescription,
   tech,
   href,
+  index,
 }: {
   title: string;
   category: string;
@@ -141,14 +142,20 @@ export function ProjectCard({
   shortDescription: string;
   tech: string[];
   href: string;
+  index: number;
 }) {
   return (
     <Link
       href={href}
-      className="group block border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 transition-colors hover:border-[var(--ink)]"
+      className="group relative block border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--ink)] hover:bg-white/60"
     >
       <div className="mb-6 flex items-start justify-between gap-4">
-        <span className="text-[11px] uppercase tracking-[0.16em] text-[var(--muted)]">{category}</span>
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">
+            {String(index).padStart(2, "0")}
+          </span>
+          <span className="text-[11px] uppercase tracking-[0.16em] text-[var(--muted)]">{category}</span>
+        </div>
         <span className="rounded-full border border-[var(--line)] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
           {status}
         </span>
