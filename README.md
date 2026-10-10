@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dax Patel Portfolio
 
-## Getting Started
+A personal portfolio built with Next.js App Router, React, TypeScript, Tailwind CSS, and Motion for React.
 
-First, run the development server:
+## Local development
+
+Install dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+When `SITE_URL` is not set in development, metadata uses the local origin at `http://localhost:3000` (or the configured `PORT`). Set `SITE_URL` locally only if you need to test a different local HTTPS origin.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Validation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+npm run start
+```
 
-## Learn More
+There is currently no automated test suite configured.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment and search metadata
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project uses Next.js defaults for Vercel deployment; no custom deployment configuration is required.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Before deploying to production, set the server-side `SITE_URL` environment variable in the deployment platform to the confirmed canonical HTTPS origin (origin only, without a path, query, or fragment). Do not commit this value or add it to client-side environment variables.
 
-## Deploy on Vercel
+In development, the site safely falls back to localhost. In production, if `SITE_URL` is missing, the app omits canonical and absolute social URLs and returns an empty sitemap rather than publishing an invented domain. The `robots.txt` route only references a sitemap when the origin is configured. Vercel preview deployments are marked `noindex` and disallowed in `robots.txt`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The sitemap includes the homepage, portfolio index, public project detail pages, research, writing, about, and contact routes. It excludes not-found routes and preview deployments.

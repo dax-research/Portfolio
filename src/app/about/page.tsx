@@ -1,6 +1,14 @@
 import { PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
 import { education, experience } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
+import { createPageMetadata } from "@/lib/site-metadata";
+
+export const metadata = createPageMetadata({
+  title: "About",
+  description:
+    "Learn about Dax Patel’s computer engineering studies, experience, and interests in AI, machine learning, and research systems.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -26,7 +34,7 @@ export default function AboutPage() {
           </div>
 
           <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-            <p className="mono mb-5 text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Background</p>
+            <h2 className="mono mb-5 text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Background</h2>
             <div className="space-y-5">
               {experience.map((item) => (
                 <div

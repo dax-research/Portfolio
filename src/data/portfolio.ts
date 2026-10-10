@@ -149,49 +149,47 @@ export const featuredProjects: Project[] = [
     category: "AI research assistant",
     status: "Currently building",
     shortDescription:
-      "An AI-powered research assistant for document ingestion, semantic search, and literature review workflows.",
+      "An early-stage research assistant project with verified PDF extraction and page-aware text chunking; retrieval remains on the roadmap.",
     description:
-      "ResearchOS is an experimental research assistant inspired by document-based AI workflows, designed to bring paper analysis, retrieval, and structured summaries into a single system.",
+      "ResearchOS is an experimental research assistant project. Its inspected public source includes PDF text extraction and page-aware chunking; embeddings, indexing, semantic search, and response generation remain roadmap items.",
     repo: "https://github.com/dax-research/research-os",
-    tech: ["Python", "RAG", "Embeddings", "PDF Processing"],
+    tech: ["Python", "PDF Processing", "Text Chunking", "Retrieval (planned)"],
     highlights: [
-      "PDF text extraction and document parsing",
-      "Chunking and semantic indexing",
-      "Embedding generation with BAAI/bge-small-en-v1.5",
-      "RAG foundation for project research workflows",
-      "Research assistant architecture for future iterations",
+      "PDF text extraction with filename and page metadata",
+      "Word-based chunking that retains page and chunk identifiers",
+      "Optional overlap between adjacent text chunks",
+      "Embeddings, vector storage, and semantic search remain on the roadmap",
     ],
     workflow: [
-      { label: "Research papers", detail: "Provide source documents as PDFs." },
-      { label: "Extract & chunk", detail: "Prepare text segments for retrieval." },
-      { label: "Embed", detail: "Generate vector representations of text." },
-      { label: "Retrieve", detail: "Use the pipeline as a foundation for RAG." },
+      { label: "PDF path", detail: "The example script passes a local PDF path to the reader." },
+      { label: "Extract text", detail: "Read non-empty pages and retain filename and page metadata." },
+      { label: "Chunk pages", detail: "Split page text into word-based chunks with optional overlap." },
+      { label: "Future retrieval", detail: "Embeddings, indexing, search, and RAG are roadmap items." },
     ],
     overview:
-      "ResearchOS explores a research workflow in which documents are processed, indexed, and searched semantically before being synthesized into insights. The project is designed around the practical needs of literature review and research discovery rather than only model demos.",
+      "ResearchOS is an early-stage project for exploring research-document workflows. The public source inspected for this portfolio contains a PDF reader and a page-aware chunker; later retrieval and generation stages are not represented as implemented here.",
     problem:
-      "Research workflows are often fragmented: papers exist in PDFs, notes are spread across files, and the extraction and meaning-making process is manual. When a research question is broad, finding the relevant context becomes slow and repetitive.",
+      "Research papers are commonly distributed as PDFs, which can make their text harder to process programmatically. The current code addresses PDF text extraction and chunk preparation, while search and synthesis remain future work.",
     motivation:
-      "The motivation is to build a system that works like an intelligent research companion: ingest documents, make them searchable, and support reasoning over large collections of source material.",
+      "The project explores how document-processing foundations could support research workflows. The README lists embeddings, a vector database, semantic search, a RAG pipeline, and a research agent as roadmap stages.",
     architecture:
-      "The project is structured around a document-processing pipeline: extraction, chunking, embedding, indexing, and retrieval. That foundation is intentionally created to support future semantic search, summarization, and literature review interactions.",
+      "The verified source flow is a local PDF path passed to a PDF reader, followed by page-aware word chunking. Embeddings, vector storage, query processing, retrieval, and response generation are not implemented in the inspected source tree.",
     implementation: [
-      "Added PDF text extraction and article parsing workflows.",
-      "Implemented chunking and text segmentation for downstream retrieval.",
-      "Generated embeddings using a BAAI/bge-small-en-v1.5-based pipeline.",
-      "Built the earliest RAG-style components for document grounding.",
+      "Implemented PDF text extraction for non-empty pages with filename and page-count metadata.",
+      "Implemented word-based chunking that retains page numbers and sequential chunk IDs.",
+      "Added optional overlap between adjacent chunks and tests for page-aware chunking.",
+      "The inspected source does not contain embedding, vector database, search, or RAG implementations.",
     ],
     decisions: [
-      "Focused on research workflow foundations before building a full autonomous agent layer.",
-      "Built the retrieval pipeline to stay modular and extendable for future semantic search and evaluation work.",
-      "Prioritized document-grounded reasoning and source traceability over overly generic AI outputs.",
+      "The reader returns filename and page information alongside extracted text.",
+      "The chunker preserves page references and sequential chunk identifiers.",
+      "Chunk overlap is optional rather than required.",
     ],
     results:
-      "The project is best understood as an infrastructure-heavy prototype and an active exploration of literature-aware AI workflows rather than a completed research platform.",
+      "The public source verifies PDF reading and page-aware chunking. Retrieval and generation capabilities remain roadmap items, so no search, RAG, or model-performance results are claimed.",
     challenges: [
-      "Handling noisy or inconsistent PDF extraction.",
-      "Designing chunking strategies that preserve context for downstream retrieval.",
-      "Balancing the speed of retrieval with quality of evidence and reasoning.",
+      "No browser-based PDF upload or query interface was present in the inspected source.",
+      "No embedding model, vector index, semantic search, or response-generation code was present.",
     ],
   },
   {
@@ -263,13 +261,14 @@ export const writingArticles: Article[] = [
     category: "ML Fundamentals",
     href: "https://medium.com/@dax1214b/why-data-matters-more-than-algorithm-in-machine-learning-c3966451e933",
   },
-  {
-    title: "First Step into Machine Learning: Linear Regression",
-    description: "Understanding how a simple line can make powerful predictions.",
-    date: "Draft / Not published",
-    category: "Learning Notes",
-    href: "https://medium.com/@dax1214b",
-  },
 ];
 
 export const allProjects = featuredProjects;
+
+export function getProjectBySlug(slug: string): Project {
+  const project = allProjects.find((item) => item.slug === slug);
+  if (!project) {
+    throw new Error(`Portfolio data is missing project "${slug}".`);
+  }
+  return project;
+}
