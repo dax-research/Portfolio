@@ -2,9 +2,9 @@ import {
   ArticleCard,
   LinkButton,
   PageFrame,
-  ProjectCard,
   SectionHeading,
 } from "@/components/site-shell";
+import { ProjectCard } from "@/components/motion/project-card";
 import {
   education,
   featuredProjects,
@@ -14,6 +14,7 @@ import {
   writingArticles,
 } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
+import { MaskedHeadingText } from "@/components/motion/masked-heading";
 
 export default function Home() {
   return (
@@ -26,7 +27,7 @@ export default function Home() {
               AI/ML engineer · researcher · systems builder
             </p>
             <h1 className="max-w-4xl text-5xl font-medium tracking-[-0.08em] text-[var(--ink)] md:text-[6rem] md:leading-[0.9]">
-              Dax Patel
+              <MaskedHeadingText>Dax Patel</MaskedHeadingText>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
               I build practical AI systems and explore the research layer behind them — from data quality and model reliability to RAG, intelligent tooling, and applied ML.
@@ -113,6 +114,7 @@ export default function Home() {
                 tech={project.tech}
                 href={`/projects/${project.slug}`}
                 index={index + 1}
+                projectSlug={project.slug}
               />
             ))}
           </div>

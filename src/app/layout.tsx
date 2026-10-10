@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { ProjectMotionProvider } from "@/components/motion/project-motion-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,7 +32,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} ${displaySerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-[var(--paper)] text-[var(--ink)]">{children}</body>
+      <body className="min-h-full bg-[var(--paper)] text-[var(--ink)]">
+        <ProjectMotionProvider>{children}</ProjectMotionProvider>
+      </body>
     </html>
   );
 }

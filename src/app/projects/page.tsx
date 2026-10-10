@@ -1,4 +1,5 @@
-import { LinkButton, PageFrame, PageIntro, ProjectCard, SectionHeading } from "@/components/site-shell";
+import { LinkButton, PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
+import { ProjectCard } from "@/components/motion/project-card";
 import { featuredProjects } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
 
@@ -33,6 +34,7 @@ export default function ProjectsPage() {
               tech={project.tech}
               href={`/projects/${project.slug}`}
               index={index + 1}
+              projectSlug={project.slug}
             />
           ))}
         </div>

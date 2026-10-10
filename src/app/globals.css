@@ -337,35 +337,16 @@ img {
   text-decoration-color: currentColor;
 }
 
-.reading-progress {
+.scroll-progress-indicator {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
-  z-index: 50;
+  z-index: 100;
   height: 2px;
-  transform: scaleX(0);
   transform-origin: left;
   background: var(--ink);
-}
-
-.workflow-step::after {
-  position: absolute;
-  top: 50%;
-  right: -0.75rem;
-  z-index: 1;
-  width: 0.75rem;
-  height: 1px;
-  transform: scaleX(0);
-  transform-origin: left;
-  background: var(--ink);
-  content: "";
-}
-
-@media (max-width: 767px) {
-  .workflow-step::after {
-    display: none;
-  }
+  pointer-events: none;
 }
 
 .workflow-chevron {
@@ -424,25 +405,6 @@ img {
     animation-range: entry 0% entry 45%;
   }
 
-  .workflow-step {
-    animation: reveal-on-scroll linear both;
-    animation-duration: 1ms;
-    animation-timeline: view();
-    animation-range: entry 0% entry 42%;
-  }
-
-  .workflow-step::after {
-    animation: draw-connector linear both;
-    animation-duration: 1ms;
-    animation-timeline: view();
-    animation-range: entry 8% entry 52%;
-  }
-
-  .reading-progress {
-    animation: reading-progress linear both;
-    animation-timeline: scroll(root block);
-  }
-
   @keyframes reveal-on-scroll {
     from {
       opacity: 0.35;
@@ -461,17 +423,6 @@ img {
     }
   }
 
-  @keyframes draw-connector {
-    to {
-      transform: scaleX(1);
-    }
-  }
-
-  @keyframes reading-progress {
-    to {
-      transform: scaleX(1);
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -497,15 +448,15 @@ img {
     animation: none !important;
   }
 
-  .section-rule::before,
-  .workflow-step,
-  .workflow-step::after,
-  .reading-progress {
+  .workflow-chevron {
+    opacity: 1;
+  }
+
+  .section-rule::before {
     animation: none !important;
   }
 
-  .section-rule::before,
-  .workflow-step::after {
+  .section-rule::before {
     transform: none;
   }
 

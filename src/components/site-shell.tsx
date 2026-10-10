@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { SiteNavigation } from "@/components/mobile-navigation";
+import { MaskedHeadingText } from "@/components/motion/masked-heading";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
+import { SharedProjectTitle } from "@/components/motion/shared-project-title";
 
 export function SiteHeader() {
   return (
@@ -51,10 +54,12 @@ export function PageIntro({
   eyebrow,
   title,
   description,
+  sharedTitleKey,
 }: {
   eyebrow: string;
   title: string;
   description: string;
+  sharedTitleKey?: string;
 }) {
   return (
     <section className="border-b border-[var(--line)] py-16 md:py-20">
@@ -62,9 +67,19 @@ export function PageIntro({
         <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
           {eyebrow}
         </p>
-        <h1 className="max-w-4xl text-4xl font-medium tracking-[-0.08em] text-[var(--ink)] md:text-6xl">
-          {title}
-        </h1>
+        {sharedTitleKey ? (
+          <SharedProjectTitle
+            as="h1"
+            projectSlug={sharedTitleKey}
+            className="max-w-4xl text-4xl font-medium tracking-[-0.08em] text-[var(--ink)] md:text-6xl"
+          >
+            <MaskedHeadingText>{title}</MaskedHeadingText>
+          </SharedProjectTitle>
+        ) : (
+          <h1 className="max-w-4xl text-4xl font-medium tracking-[-0.08em] text-[var(--ink)] md:text-6xl">
+            <MaskedHeadingText>{title}</MaskedHeadingText>
+          </h1>
+        )}
         <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--muted)] md:text-lg">
           {description}
         </p>
@@ -101,63 +116,6 @@ export function LinkButton({
       {children}
       <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1 group-focus-visible:translate-x-1">
         →
-      </span>
-    </Link>
-  );
-}
-
-export function ProjectCard({
-  title,
-  category,
-  status,
-  shortDescription,
-  tech,
-  href,
-  index,
-}: {
-  title: string;
-  category: string;
-  status: string;
-  shortDescription: string;
-  tech: string[];
-  href: string;
-  index: number;
-}) {
-  return (
-    <Link
-      href={href}
-      className="project-card group relative block border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[var(--ink)] hover:bg-white/60"
-    >
-      <div className="mb-6 flex items-start justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">
-            {String(index).padStart(2, "0")}
-          </span>
-          <span className="text-[11px] uppercase tracking-[0.16em] text-[var(--muted)]">{category}</span>
-        </div>
-        <span className="rounded-full border border-[var(--line)] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
-          {status}
-        </span>
-      </div>
-      <h3 className="text-2xl font-medium tracking-[-0.05em] text-[var(--ink)] md:text-3xl">
-        {title}
-      </h3>
-      <p className="mt-4 max-w-xl text-base leading-7 text-[var(--muted)]">{shortDescription}</p>
-      <div className="mt-6 flex flex-wrap gap-2">
-        {tech.map((item) => (
-          <span
-            key={item}
-            className="border border-[var(--line)] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]"
-          >
-            {item}
-          </span>
-        ))}
-      </div>
-      <span className="project-card-cta mt-6 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--ink)]">
-        View case study
-        <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1 group-focus-visible:translate-x-1">
-          →
-        </span>
       </span>
     </Link>
   );
@@ -202,6 +160,7 @@ export function SiteFooter() {
 export function PageFrame({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)]">
+      <ScrollProgress />
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
