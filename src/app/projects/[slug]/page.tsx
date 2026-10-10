@@ -5,6 +5,7 @@ import { PageFrame, PageIntro } from "@/components/site-shell";
 import { allProjects } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
 import { WorkflowDiagram } from "@/components/motion/workflow-diagram";
+import { ResearchOsArchitectureExplorer } from "@/components/research-os/architecture-explorer";
 
 export function generateStaticParams() {
   return allProjects.map((project) => ({ slug: project.slug }));
@@ -52,28 +53,32 @@ async function ProjectDetails({
         sharedTitleKey={project.slug}
       />
       <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
-        <section
-          aria-label={`${project.title} workflow`}
-          className="workflow-visual scroll-reveal mb-12 border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 md:p-8"
-        >
-          <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">
-                System workflow
+        {project.slug === "research-os" ? (
+          <ResearchOsArchitectureExplorer />
+        ) : (
+          <section
+            aria-label={`${project.title} workflow`}
+            className="workflow-visual scroll-reveal mb-12 border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 md:p-8"
+          >
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">
+                  System workflow
+                </p>
+                <h2 className="mt-2 text-2xl font-medium tracking-[-0.05em] text-[var(--ink)] md:text-3xl">
+                  From input to useful output.
+                </h2>
+              </div>
+              <p className="mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
+                Project overview
               </p>
-              <h2 className="mt-2 text-2xl font-medium tracking-[-0.05em] text-[var(--ink)] md:text-3xl">
-                From input to useful output.
-              </h2>
             </div>
-            <p className="mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
-              Project overview
+            <WorkflowDiagram steps={project.workflow} />
+            <p className="mt-4 text-xs leading-5 text-[var(--muted)]">
+              Conceptual flow based on the project&apos;s documented implementation; not a benchmark or deployment claim.
             </p>
-          </div>
-          <WorkflowDiagram steps={project.workflow} />
-          <p className="mt-4 text-xs leading-5 text-[var(--muted)]">
-            Conceptual flow based on the project&apos;s documented implementation; not a benchmark or deployment claim.
-          </p>
-        </section>
+          </section>
+        )}
 
         <div className="mb-10 flex flex-wrap gap-3">
           <a
