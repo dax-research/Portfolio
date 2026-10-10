@@ -2,9 +2,9 @@ import {
   ArticleCard,
   LinkButton,
   PageFrame,
-  ProjectCard,
   SectionHeading,
 } from "@/components/site-shell";
+import { ProjectCard } from "@/components/motion/project-card";
 import {
   education,
   featuredProjects,
@@ -13,18 +13,21 @@ import {
   skills,
   writingArticles,
 } from "@/data/portfolio";
+import { RouteTransition } from "@/components/route-transition";
+import { MaskedHeadingText } from "@/components/motion/masked-heading";
 
 export default function Home() {
   return (
     <PageFrame>
-      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 pb-20 md:px-8">
+      <RouteTransition routeKey="home">
+        <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 pb-20 md:px-8">
         <section className="hero-enter grid gap-10 border-b border-[var(--line)] py-16 md:grid-cols-[1.35fr_0.65fr] md:items-end md:py-20">
-          <div>
+          <div className="hero-copy">
             <p className="mono mb-5 text-[11px] uppercase tracking-[0.2em] text-[var(--muted)]">
               AI/ML engineer · researcher · systems builder
             </p>
             <h1 className="max-w-4xl text-5xl font-medium tracking-[-0.08em] text-[var(--ink)] md:text-[6rem] md:leading-[0.9]">
-              Dax Patel
+              <MaskedHeadingText>Dax Patel</MaskedHeadingText>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)] md:text-xl">
               I build practical AI systems and explore the research layer behind them — from data quality and model reliability to RAG, intelligent tooling, and applied ML.
@@ -43,15 +46,15 @@ export default function Home() {
               </a>
             </div>
             <div className="mt-10 grid gap-4 sm:grid-cols-3">
-              <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
+              <div className="focus-chip border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
                 <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Focus</p>
                 <p className="mt-3 text-base text-[var(--ink)]">Data quality</p>
               </div>
-              <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
+              <div className="focus-chip border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
                 <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Systems</p>
                 <p className="mt-3 text-base text-[var(--ink)]">RAG & search</p>
               </div>
-              <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
+              <div className="focus-chip border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-4">
                 <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Applied</p>
                 <p className="mt-3 text-base text-[var(--ink)]">Fraud analytics</p>
               </div>
@@ -94,7 +97,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="scroll-reveal section-rule py-20">
           <SectionHeading
             eyebrow="Selected work"
             title="Systems with technical depth and research intent."
@@ -111,12 +114,13 @@ export default function Home() {
                 tech={project.tech}
                 href={`/projects/${project.slug}`}
                 index={index + 1}
+                projectSlug={project.slug}
               />
             ))}
           </div>
         </section>
 
-        <section className="border-t border-[var(--line)] py-20">
+        <section className="scroll-reveal section-rule border-t border-[var(--line)] py-20">
           <SectionHeading
             eyebrow="Research"
             title="Interests grounded in systems and experimentation."
@@ -124,7 +128,7 @@ export default function Home() {
           />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {researchInterests.map((interest) => (
-              <div key={interest} className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-5">
+              <div key={interest} className="topic-card scroll-reveal border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-5">
                 <p className="mono text-[10px] uppercase tracking-[0.16em] text-[var(--muted)]">Topic</p>
                 <p className="mt-3 text-lg leading-7 text-[var(--ink)]">{interest}</p>
               </div>
@@ -132,7 +136,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-[var(--line)] py-20">
+        <section className="scroll-reveal section-rule border-t border-[var(--line)] py-20">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <SectionHeading
               eyebrow="Writing"
@@ -149,7 +153,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-[var(--line)] py-20">
+        <section className="scroll-reveal section-rule border-t border-[var(--line)] py-20">
           <SectionHeading
             eyebrow="Skills"
             title="Engineering approach shaped by practical implementation."
@@ -189,7 +193,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-[var(--line)] py-20">
+        <section className="scroll-reveal section-rule border-t border-[var(--line)] py-20">
           <SectionHeading
             eyebrow="About"
             title="Educated in engineering, driven by research and applied systems."
@@ -223,7 +227,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-[var(--line)] py-20">
+        <section className="scroll-reveal section-rule border-t border-[var(--line)] py-20">
           <SectionHeading
             eyebrow="Contact"
             title="Open to AI/ML, research, and systems collaborations."
@@ -248,7 +252,8 @@ export default function Home() {
             </a>
           </div>
         </section>
-      </main>
+        </main>
+      </RouteTransition>
     </PageFrame>
   );
 }

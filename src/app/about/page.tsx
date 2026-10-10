@@ -1,10 +1,12 @@
 import { PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
 import { education, experience } from "@/data/portfolio";
+import { RouteTransition } from "@/components/route-transition";
 
 export default function AboutPage() {
   return (
     <PageFrame>
-      <PageIntro
+      <RouteTransition routeKey="about">
+        <PageIntro
         eyebrow="About"
         title="Engineer, researcher, and systems-minded learner."
         description="I am building a career around AI systems, applied models, and intellectually rigorous engineering work."
@@ -57,7 +59,8 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </main>
+        </main>
+      </RouteTransition>
     </PageFrame>
   );
 }

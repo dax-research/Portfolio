@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { PageFrame, PageIntro } from "@/components/site-shell";
 import { allProjects } from "@/data/portfolio";
+import { RouteTransition } from "@/components/route-transition";
+import { WorkflowDiagram } from "@/components/motion/workflow-diagram";
 
 export function generateStaticParams() {
   return allProjects.map((project) => ({ slug: project.slug }));
@@ -42,15 +44,17 @@ async function ProjectDetails({
 
   return (
     <>
+      <RouteTransition routeKey={`project-${project.slug}`}>
       <PageIntro
         eyebrow={project.category}
         title={project.title}
         description={project.description}
+        sharedTitleKey={project.slug}
       />
       <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-6 py-16 md:px-8">
         <section
           aria-label={`${project.title} workflow`}
-          className="mb-12 border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 md:p-8"
+          className="workflow-visual scroll-reveal mb-12 border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6 md:p-8"
         >
           <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -65,25 +69,7 @@ async function ProjectDetails({
               Project overview
             </p>
           </div>
-          <ol className="grid gap-3 md:grid-cols-4">
-            {project.workflow.map((step, index) => (
-              <li
-                key={step.label}
-                className="relative min-h-36 border border-[var(--line)] bg-[var(--paper)] p-4"
-              >
-                <p className="mono text-[10px] uppercase tracking-[0.14em] text-[var(--muted)]">
-                  Step {String(index + 1).padStart(2, "0")}
-                </p>
-                <h3 className="mt-3 text-lg font-medium tracking-[-0.03em] text-[var(--ink)]">
-                  {step.label}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{step.detail}</p>
-                {index < project.workflow.length - 1 ? (
-                  <span className="absolute -right-2 top-1/2 z-10 hidden h-4 w-4 -translate-y-1/2 rotate-45 border-r border-t border-[var(--line)] bg-[var(--paper)] md:block" aria-hidden="true" />
-                ) : null}
-              </li>
-            ))}
-          </ol>
+          <WorkflowDiagram steps={project.workflow} />
           <p className="mt-4 text-xs leading-5 text-[var(--muted)]">
             Conceptual flow based on the project&apos;s documented implementation; not a benchmark or deployment claim.
           </p>
@@ -214,7 +200,8 @@ async function ProjectDetails({
             </ul>
           </div>
         </div>
-      </main>
+        </main>
+      </RouteTransition>
     </>
   );
 }

@@ -1,10 +1,13 @@
-import { LinkButton, PageFrame, PageIntro, ProjectCard, SectionHeading } from "@/components/site-shell";
+import { LinkButton, PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
+import { ProjectCard } from "@/components/motion/project-card";
 import { featuredProjects } from "@/data/portfolio";
+import { RouteTransition } from "@/components/route-transition";
 
 export default function ProjectsPage() {
   return (
     <PageFrame>
-      <PageIntro
+      <RouteTransition routeKey="projects">
+        <PageIntro
         eyebrow="Projects"
         title="Selected systems, experiments, and applied AI work."
         description="A curated portfolio of current projects focused on data quality, research tooling, and applied machine learning systems."
@@ -31,10 +34,12 @@ export default function ProjectsPage() {
               tech={project.tech}
               href={`/projects/${project.slug}`}
               index={index + 1}
+              projectSlug={project.slug}
             />
           ))}
         </div>
-      </main>
+        </main>
+      </RouteTransition>
     </PageFrame>
   );
 }
