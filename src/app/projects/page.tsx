@@ -2,6 +2,14 @@ import { LinkButton, PageFrame, PageIntro, SectionHeading } from "@/components/s
 import { ProjectCard } from "@/components/motion/project-card";
 import { featuredProjects } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
+import { createPageMetadata } from "@/lib/site-metadata";
+
+export const metadata = createPageMetadata({
+  title: "Projects",
+  description:
+    "Explore Dax Patel’s work in dataset quality tooling, early-stage research software, and transaction fraud detection.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   return (

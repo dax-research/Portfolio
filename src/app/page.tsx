@@ -15,6 +15,14 @@ import {
 } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
 import { MaskedHeadingText } from "@/components/motion/masked-heading";
+import { createPageMetadata } from "@/lib/site-metadata";
+
+export const metadata = createPageMetadata({
+  title: "AI/ML Engineer & Researcher",
+  description:
+    "Portfolio of Dax Patel, a computer engineering student building AI/ML projects and exploring data quality, NLP, retrieval, and intelligent systems.",
+  path: "/",
+});
 
 export default function Home() {
   return (
@@ -244,7 +252,7 @@ export default function Home() {
             </a>
             <a href={profileLinks.linkedin} target="_blank" rel="noreferrer" className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-5">
               <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">LinkedIn</p>
-              <p className="mt-3 text-base text-[var(--ink)]">linkedin.com/in/dax-patel</p>
+              <p className="mt-3 text-base text-[var(--ink)]">linkedin.com/in/dax-patel-b26926323</p>
             </a>
             <a href={profileLinks.medium} target="_blank" rel="noreferrer" className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-5">
               <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Medium</p>

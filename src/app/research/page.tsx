@@ -1,6 +1,14 @@
 import { PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
 import { researchInterests } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
+import { createPageMetadata } from "@/lib/site-metadata";
+
+export const metadata = createPageMetadata({
+  title: "Research Interests",
+  description:
+    "Explore Dax Patel’s interests in language models, retrieval, evaluation, data quality, and research tooling.",
+  path: "/research",
+});
 
 export default function ResearchPage() {
   return (

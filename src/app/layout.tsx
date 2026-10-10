@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
 import { ProjectMotionProvider } from "@/components/motion/project-motion-provider";
+import { isPreviewDeployment, siteBaseUrl } from "@/lib/site-metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,9 +21,20 @@ const displaySerif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Dax Patel | AI/ML Engineer & Researcher",
+  metadataBase: siteBaseUrl,
+  title: {
+    default: "Dax Patel | AI/ML Engineer & Researcher",
+    template: "%s | Dax Patel",
+  },
   description:
-    "Portfolio of Dax Patel, an AI/ML engineer and researcher exploring data quality, NLP, LLMs, RAG, and intelligent systems.",
+    "Portfolio of Dax Patel, a computer engineering student building AI/ML projects and exploring data quality, NLP, retrieval, and intelligent systems.",
+  openGraph: {
+    type: "website",
+    siteName: "Dax Patel",
+  },
+  robots: isPreviewDeployment
+    ? { index: false, follow: false }
+    : { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

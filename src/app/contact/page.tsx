@@ -2,6 +2,14 @@ import Link from "next/link";
 import { PageFrame, PageIntro } from "@/components/site-shell";
 import { profileLinks } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
+import { createPageMetadata } from "@/lib/site-metadata";
+
+export const metadata = createPageMetadata({
+  title: "Contact",
+  description:
+    "Contact Dax Patel about AI/ML internships, research discussions, engineering collaborations, and project opportunities.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   const contacts = [

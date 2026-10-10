@@ -1,6 +1,14 @@
 import { ArticleCard, PageFrame, PageIntro, SectionHeading } from "@/components/site-shell";
 import { writingArticles } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
+import { createPageMetadata } from "@/lib/site-metadata";
+
+export const metadata = createPageMetadata({
+  title: "Writing",
+  description:
+    "Read Dax Patel’s published writing on AI systems, machine learning fundamentals, and data quality.",
+  path: "/writing",
+});
 
 export default function WritingPage() {
   return (

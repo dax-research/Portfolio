@@ -1,50 +1,13 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { Suspense } from "react";
 import { PageFrame, PageIntro } from "@/components/site-shell";
-import { allProjects } from "@/data/portfolio";
+import type { Project } from "@/data/portfolio";
 import { RouteTransition } from "@/components/route-transition";
 import { WorkflowDiagram } from "@/components/motion/workflow-diagram";
 import { ResearchOsArchitectureExplorer } from "@/components/research-os/architecture-explorer";
 
-export function generateStaticParams() {
-  return allProjects.map((project) => ({ slug: project.slug }));
-}
-
-export default function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export function ProjectDetailPage({ project }: { project: Project }) {
   return (
     <PageFrame>
-      <Suspense
-        fallback={
-          <div className="mx-auto min-h-80 max-w-6xl px-6 py-16 text-sm text-[var(--muted)] md:px-8" aria-busy="true">
-            Loading project…
-          </div>
-        }
-      >
-        <ProjectDetails params={params} />
-      </Suspense>
-    </PageFrame>
-  );
-}
-
-async function ProjectDetails({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const project = allProjects.find((item) => item.slug === slug);
-
-  if (!project) {
-    return notFound();
-  }
-
-  return (
-    <>
       <RouteTransition routeKey={`project-${project.slug}`}>
       <PageIntro
         eyebrow={project.category}
@@ -110,34 +73,34 @@ async function ProjectDetails({
         <div className="grid gap-8 md:grid-cols-[1.2fr_0.8fr]">
           <div className="space-y-8">
             <section className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Overview</p>
+              <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Overview</h2>
               <p className="mt-4 text-base leading-8 text-[var(--muted)]">{project.overview}</p>
             </section>
 
             <section className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Problem</p>
+              <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Problem</h2>
               <p className="mt-4 text-base leading-8 text-[var(--muted)]">{project.problem}</p>
             </section>
 
             <section className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Motivation</p>
+              <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Motivation</h2>
               <p className="mt-4 text-base leading-8 text-[var(--muted)]">{project.motivation}</p>
             </section>
 
             <section className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Architecture</p>
+              <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Architecture</h2>
               <p className="mt-4 text-base leading-8 text-[var(--muted)]">{project.architecture}</p>
             </section>
           </div>
 
           <aside className="space-y-6">
             <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Status</p>
+              <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Status</h2>
               <p className="mt-3 text-xl font-medium tracking-[-0.04em] text-[var(--ink)]">{project.status}</p>
             </div>
 
             <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Technologies</p>
+              <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Technologies</h2>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
                   <span key={tech} className="border border-[var(--line)] px-2 py-1 text-[10px] uppercase tracking-[0.12em] text-[var(--muted)]">
@@ -148,7 +111,7 @@ async function ProjectDetails({
             </div>
 
             <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-              <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Highlights</p>
+              <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Highlights</h2>
               <ul className="mt-4 space-y-3 text-sm leading-7 text-[var(--muted)]">
                 {project.highlights.map((item) => (
                   <li key={item} className="flex gap-3">
@@ -163,7 +126,7 @@ async function ProjectDetails({
 
         <div className="mt-16 grid gap-8 md:grid-cols-2">
           <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-            <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Implementation</p>
+            <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Implementation</h2>
             <ul className="mt-4 space-y-3 text-base leading-7 text-[var(--muted)]">
               {project.implementation.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -175,7 +138,7 @@ async function ProjectDetails({
           </div>
 
           <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-            <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Key decisions</p>
+            <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Key decisions</h2>
             <ul className="mt-4 space-y-3 text-base leading-7 text-[var(--muted)]">
               {project.decisions.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -189,12 +152,14 @@ async function ProjectDetails({
 
         <div className="mt-16 grid gap-8 md:grid-cols-2">
           <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-            <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Results & evaluation</p>
+            <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Results & evaluation</h2>
             <p className="mt-4 text-base leading-8 text-[var(--muted)]">{project.results}</p>
           </div>
 
           <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.2)] p-6">
-            <p className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">Challenges</p>
+            <h2 className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--muted)]">
+              {project.slug === "research-os" ? "Current limitations" : "Challenges"}
+            </h2>
             <ul className="mt-4 space-y-3 text-base leading-7 text-[var(--muted)]">
               {project.challenges.map((item) => (
                 <li key={item} className="flex gap-3">
@@ -207,6 +172,6 @@ async function ProjectDetails({
         </div>
         </main>
       </RouteTransition>
-    </>
+    </PageFrame>
   );
 }
